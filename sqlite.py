@@ -11,8 +11,8 @@ def init_db():
 
 con, cur = init_db()
 
-res = cur.execute("SELECT name FROM sqlite_master")
-print(res.fetchone())
+# res = cur.execute("SELECT name FROM sqlite_master")
+# print(res.fetchone())
 
 # cur.execute(""" INSERT INTO data VALUES ('LOLOLlOL') """)
 # con.commit()

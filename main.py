@@ -10,8 +10,6 @@ import sqlite3
 from sqlite import init_db
 
 class MyWidget(QtWidgets.QWidget):
-    #PERSISTENCE_FILE = "clipboard_history.json"
-    
 
     def __init__(self):
         super().__init__()
@@ -25,18 +23,6 @@ class MyWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.list_widget)
         self.load_clipboard_data()
          
-
-    def save_clipboard_data(self):
-        res = 3
-        # try:
-        #     open(self.PERSISTENCE_FILE, "w").close()
-
-        #     with open(self.PERSISTENCE_FILE, "w") as file:
-        #         json.dump(list(self.clipboard), file)
-        #     print(f"Clipboard data saved to {self.PERSISTENCE_FILE}")
-        # except Exception as e:
-        #     print(f"Error saving clipboard data: {e}")
-
     def load_clipboard_data(self):
         res = self.cur.execute("SELECT info from data")
         items = res.fetchall()
@@ -126,7 +112,7 @@ def listen_for_hotkey(app):
         QtCore.QMetaObject.invokeMethod(widget, "hide", QtCore.Qt.QueuedConnection)  
 
     with keyboard.GlobalHotKeys({'<cmd>+c': activate_copy, 
-                                 '<cmd>+<shift>': activate_clipboard,
+                                 '<ctrl>+<shift>': activate_clipboard,
                                  '<esc>': hide_app
                                 
                                  }) as hotkeys: hotkeys.join()
